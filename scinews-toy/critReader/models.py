@@ -24,7 +24,7 @@ class Article(models.Model):
 class Question(models.Model):
     question_article=models.ForeignKey(Article, on_delete=models.CASCADE)
     question_text=models.CharField(max_length=200)
-    question_madeby=models.ForeignKey(User)
+    question_madeby=models.ForeignKey(User, on_delete=models.CASCADE)
     question_madeat=models.CharField(max_length=20)
     question_popularity=models.PositiveIntegerField(default=1)
     question_pubdate = models.DateTimeField('date published')
@@ -37,7 +37,7 @@ class RefText(models.Model):
     reftext_question=models.ForeignKey(Question, on_delete=models.CASCADE)
     reftext_text=models.CharField(max_length=200)
     reftext_pubdate = models.DateTimeField('date published')
-    reftext_madeby=models.ForeignKey(User,related_name='madeby')
+    reftext_madeby=models.ForeignKey(User,related_name='madeby',on_delete=models.CASCADE)
     def generate(self):
         self.save()
     def __str__(self):
