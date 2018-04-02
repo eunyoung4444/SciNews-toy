@@ -58,7 +58,7 @@ ROOT_URLCONF = 'scicrit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates'],
+        'DIRS': [os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
