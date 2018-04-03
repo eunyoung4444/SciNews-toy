@@ -314,7 +314,7 @@ function SubmitQWithA(){
         document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length;
         if(questholder.childNodes.length>4){
             $("#submitQuizbutton")[0].disabled=false;
-            $("#submitQuizbutton")[0].style.backgroundColor="#009e08";
+            $("#submitQuizbutton")[0].style.backgroundColor="#17a2b8";
             $("#submitQuizbutton")[0].style.color="white";   
         }
 

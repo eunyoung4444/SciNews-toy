@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^qcol/(?P<article_no>[0-9]+)/addquestion$', views.addquestion, name='addquestion'),
     url(r'^(?P<article_no>[0-9]+)/addquestion$', views.addquestion, name='addquestion'),
     url(r'^(?P<article_no>[0-9]+)/addcount$', views.addcount, name='addcount'),
+    url(r'^tutorial/$',views.tutorial,name='tutorial'),
     url(r'^signup/$',views.signup,name='signup'),
     url(r'^login/$',views.signin, name='login'),
 ]

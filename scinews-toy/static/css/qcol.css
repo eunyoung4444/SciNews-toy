@@ -195,7 +195,7 @@
 .sections{
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #f8f8f8 !important;
+  background-color: #f8f8f8;
   border-radius: 5px !important;
 }
 
@@ -210,6 +210,11 @@
 #help{
   padding:0;
 }
+
+#next{
+  padding:0;
+}
+
 .subsections{
   margin-bottom: 10px;
   background-color: #f8f8f8 !important;

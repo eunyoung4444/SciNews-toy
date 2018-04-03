@@ -197,8 +197,9 @@ function addnewQ(){
         newQinputbox.value="";
         document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length-1;
         if(questholder.childNodes.length>5){
+            console.log("HI?")
             $("#submitQbutton")[0].disabled=false;
-            $("#submitQbutton")[0].style.backgroundColor="#009e08";
+            $("#submitQbutton")[0].style.backgroundColor="#17a2b8";
             $("#submitQbutton")[0].style.color="white";   
             $("#showless")[0].style.display="inline"; 
             showbutton=document.getElementById("showless");

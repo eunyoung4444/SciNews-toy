@@ -197,6 +197,9 @@
 }
 
 
+#next{
+  padding:0;
+}
 
 #mask {
   position:absolute;

@@ -51,7 +51,7 @@ MIDDLEWARE = [
 ]
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
-LOGIN_REDIRECT_URL = '/critReader/1'
+LOGIN_REDIRECT_URL = '/critReader/tutorial'
 
 ROOT_URLCONF = 'scicrit.urls'
 

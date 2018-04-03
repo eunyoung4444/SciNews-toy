@@ -127,7 +127,7 @@ def signup(request):
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
             login(request, new_user)
-            return redirect('index')
+            return redirect('tutorial')
     else:
         form = UserForm()
         return render(request, 'critreader/signup.html', {'form': form})
@@ -140,9 +140,14 @@ def signin(request):
         user = authenticate(username = username, password = password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('tutorial')
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:
         form = LoginForm()
         return render(request, 'critreader/login.html', {'form': form})
+
+@csrf_exempt    
+def tutorial(request):
+    return render(request, 'critreader/tutorial.html')
+

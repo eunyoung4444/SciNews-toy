@@ -75,6 +75,11 @@
 //        sentence.addEventListener
     }
     reconSidebar();
+    $("#newQinput").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $("#newQbutton").click();
+        }
+    });
 /*     .onmouseup = function() {
         //// do something only if one add ref popover is open 
         if(document.getElementById("ref_input")){
@@ -133,7 +138,8 @@ function submitQs(){
             data:{'text':aquestion, 'articleno':articleno, 'madeby':madeby, 'madeat':"qcol"}
         });
     }
-    window.location.replace('quiz');
+    var quizurl='../../quiz/'+ articleno.toString();
+    window.location.replace(quizurl);
 }
 
 
@@ -159,7 +165,7 @@ function addnewQ(){
             questholder.removeChild(this.parentElement.parentElement.parentElement);
             document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length-1;   
             showbutton=document.getElementById("showless");
-            if((questholder.childNodes.length<4)&&(questholder.childNodes.length>1)){
+            if((questholder.childNodes.length<6)&&(questholder.childNodes.length>1)){
                 $("#submitQbutton")[0].disabled=true;
                 $("#submitQbutton")[0].style.backgroundColor="white";
                 $("#submitQbutton")[0].style.color="black"; 
@@ -190,9 +196,10 @@ function addnewQ(){
 
         newQinputbox.value="";
         document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length-1;
-        if(questholder.childNodes.length>3){
+        if(questholder.childNodes.length>5){
+            console.log("HI?")
             $("#submitQbutton")[0].disabled=false;
-            $("#submitQbutton")[0].style.backgroundColor="#009e08";
+            $("#submitQbutton")[0].style.backgroundColor="#009e08 !important;";
             $("#submitQbutton")[0].style.color="white";   
             $("#showless")[0].style.display="inline"; 
             showbutton=document.getElementById("showless");
