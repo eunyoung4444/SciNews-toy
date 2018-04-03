@@ -37,6 +37,7 @@
     for (var i=0;i<sents.length;i++){
         thissent=sents[i];
         thissent.setAttribute("id","sent"+i.toString());
+        thissent.setAttribute('dataref',0);
         $("#sent"+i.toString()).on({
             mouseenter: function(){
             if(thissent.classList.contains('selectable')){
@@ -275,9 +276,22 @@ function SubmitQWithA(){
 
         newQdeletebutton.addEventListener("click", function(){
             var questholder=document.getElementById("generated_quiz");
+            referredsents=this.parentElement.parentElement.parentElement.getAttribute("dataref");
+            referredsentslist=referredsents.split(',');
+            for(var i=0;i<referredsentslist.length;i++){
+                currefsentid=referredsentslist[i];
+                currefsent=document.getElementById(currefsentid);
+                currefno=currefsent.getAttribute("dataref");
+                newrefno=currefno-1;
+                currefsent.setAttribute("dataref",newrefno);
+                if(newrefno==0){
+                    currefsent.classList.remove("prevselected");
+                }
+            }
             questholder.removeChild(this.parentElement.parentElement.parentElement);
             document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length;   
             showbutton=document.getElementById("showless");
+            
             if((questholder.childNodes.length<6)&&(questholder.childNodes.length>1)){
                 $("#submitQuizbutton")[0].disabled=true;
                 $("#submitQuizbutton")[0].style.backgroundColor="white";
@@ -308,6 +322,9 @@ function SubmitQWithA(){
         refsentids=[];
         for (var i=0;i<selectedTexts.length;i++){
             selectedText=selectedTexts[i];
+            curdataref=selectedText.getAttribute("dataref");
+            newdataref=Number(curdataref)+1
+            selectedText.setAttribute("dataref",newdataref);
             selectedid=selectedText.id;
             refsentids.push(selectedid);
         }

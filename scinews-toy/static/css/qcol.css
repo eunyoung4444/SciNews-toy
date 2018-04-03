@@ -199,6 +199,17 @@
   border-radius: 5px !important;
 }
 
+#Questions{
+  border: 2px solid rgb(0, 114, 0)
+
+}
+#Qgen{
+  border: 2px solid rgb(0, 165, 0)
+}
+
+#help{
+  padding:0;
+}
 .subsections{
   margin-bottom: 10px;
   background-color: #f8f8f8 !important;

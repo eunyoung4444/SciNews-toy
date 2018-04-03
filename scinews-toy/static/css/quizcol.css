@@ -189,6 +189,14 @@
   border-radius: 5px !important;
 }
 
+#Quiz{
+  border: 2px solid #ffc107
+}
+#help{
+  padding:0;
+}
+
+
 
 #mask {
   position:absolute;
