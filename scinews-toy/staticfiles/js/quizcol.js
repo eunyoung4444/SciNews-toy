@@ -314,7 +314,7 @@ function SubmitQWithA(){
         document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length;
         if(questholder.childNodes.length>4){
             $("#submitQuizbutton")[0].disabled=false;
-            $("#submitQuizbutton")[0].style.backgroundColor="#009e08";
+            $("#submitQuizbutton")[0].style.backgroundColor="#17a2b8";
             $("#submitQuizbutton")[0].style.color="white";   
         }
 
@@ -366,7 +366,20 @@ function submitQuiz(){
             data:{'text':aquestion, 'articleno':articleno, 'madeby':madeby, 'madeat':"quizcol", 'refsentids':refsentids}
         });
     }
-    window.location.replace('../../survey/0');
+        uid=Number(document.getElementById("startbutton").getAttribute("dataref"));
+        console.log(uid)
+        if(uid%2==1){ // then group A
+            if(articleno>3){                              // then 2nd task
+                window.location.replace('../../survey/2');
+            }else{
+                window.location.replace('../../survey/0');
+            }
+        }else{ // then group B
+            if(articleno>3){                              // then 2nd task
+                window.location.replace('../../survey/2');
+            }else{
+                window.location.replace('../../survey/1');
+            }
 }
 
 /* // 

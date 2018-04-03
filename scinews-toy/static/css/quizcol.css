@@ -188,18 +188,14 @@
   background-color: #f8f8f8 !important;
   border-radius: 5px !important;
 }
+#next{
+  padding:0px}
 
 #Quiz{
   border: 2px solid #ffc107
 }
 #help{
-  padding:0;
-}
-
-
-#next{
-  padding:0;
-}
+  padding:0px;}
 
 #mask {
   position:absolute;

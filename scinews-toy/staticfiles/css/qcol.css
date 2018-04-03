@@ -210,6 +210,11 @@
 #help{
   padding:0;
 }
+
+#next{
+  padding:0;
+}
+
 .subsections{
   margin-bottom: 10px;
   background-color: #f8f8f8 !important;
