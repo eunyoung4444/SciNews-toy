@@ -43,3 +43,11 @@ class RefText(models.Model):
     def __str__(self):
         return self.reftext_text
 
+class SurveyEmbed(models.Model):
+    survey_no=models.IntegerField(default=0)
+    survey_name=models.CharField(max_length=100)
+    survey_link=models.CharField(max_length=400)
+    def __str__(self):
+        return self.survey_name
+    
+

@@ -274,11 +274,11 @@ function SubmitQWithA(){
         newQdeletebutton.innerHTML='<i class="fa fa-times-circle"></i>';
 
         newQdeletebutton.addEventListener("click", function(){
-            var questholder=document.getElementById("questions_generated");
+            var questholder=document.getElementById("generated_quiz");
             questholder.removeChild(this.parentElement.parentElement.parentElement);
             document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length;   
             showbutton=document.getElementById("showless");
-            if((questholder.childNodes.length<8)&&(questholder.childNodes.length>1)){
+            if((questholder.childNodes.length<6)&&(questholder.childNodes.length>1)){
                 $("#submitQuizbutton")[0].disabled=true;
                 $("#submitQuizbutton")[0].style.backgroundColor="white";
                 $("#submitQuizbutton")[0].style.color="black";            
@@ -298,7 +298,7 @@ function SubmitQWithA(){
         questholder.appendChild(newQholder);
 
         document.getElementById("qnumtotal").innerHTML=questholder.childNodes.length;
-        if(questholder.childNodes.length>2){
+        if(questholder.childNodes.length>4){
             $("#submitQuizbutton")[0].disabled=false;
             $("#submitQuizbutton")[0].style.backgroundColor="#009e08";
             $("#submitQuizbutton")[0].style.color="white";   
@@ -349,7 +349,7 @@ function submitQuiz(){
             data:{'text':aquestion, 'articleno':articleno, 'madeby':madeby, 'madeat':"quizcol", 'refsentids':refsentids}
         });
     }
-    window.location.replace('quiz');
+    window.location.replace('../../survey/0');
 }
 
 /* // 

@@ -68,6 +68,18 @@ def quiz_collector(request,article_no):
     } 
     return render(request, 'critreader/quizcol.html', context)
 
+def survey(request, survey_no):
+    try:
+        survey=SurveyEmbed.objects.get(survey_no=survey_no)
+    except SurveyEmbed.DoesNotExist:
+        raise Http404("Survey does not exist")
+    thissurvey=SurveyEmbed.objects.get(survey_no=survey_no)
+    context={
+    'survey':thissurvey,
+    } 
+    return render(request, 'critreader/surveyembed.html', context)
+
+
 @csrf_exempt
 def addquestionwithref(request, article_no):
     articleno=request.POST.get('articleno',None)
