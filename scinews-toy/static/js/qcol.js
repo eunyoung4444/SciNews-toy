@@ -138,7 +138,8 @@ function submitQs(){
             data:{'text':aquestion, 'articleno':articleno, 'madeby':madeby, 'madeat':"qcol"}
         });
     }
-    window.location.replace('quiz');
+    var quizurl='../../quiz/'+ articleno.toString();
+    window.location.replace(quizurl);
 }
 
 
