@@ -380,7 +380,7 @@ function submitQuiz(){
             }else{
                 window.location.replace('../../survey/1');
             }
-}
+}}
 
 /* // 
 function selectToQuestion() {
