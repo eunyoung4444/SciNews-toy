@@ -365,7 +365,7 @@ function submitQuiz(){
             data:{'text':aquestion, 'articleno':articleno, 'madeby':madeby, 'madeat':"quizcol", 'refsentids':refsentids}
         });
     }
-        uid=Number(document.getElementById("startbutton").getAttribute("dataref"));
+        uid=Number(document.getElementById("submitQuizbutton").getAttribute("dataref"));
         console.log(uid)
         if(uid%2==1){ // then group A
             if(articleno>3){                              // then 2nd task
