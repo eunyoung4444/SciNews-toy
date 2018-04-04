@@ -359,11 +359,11 @@ function submitQuiz(){
         var aquestion=question_holders[i].firstChild.firstChild.innerText;   
         var refsentids=question_holders[i].getAttribute('dataref');
         console.log(refsentids);
-        $.ajax({
+        $.when( $.ajax({
             url: 'addquestionwithref',
             method: 'POST',
             data:{'text':aquestion, 'articleno':articleno, 'madeby':madeby, 'madeat':"quizcol", 'refsentids':refsentids}
-        });
+        })).done(console.log(refsentids));
     }
         uid=Number(document.getElementById("submitQuizbutton").getAttribute("dataref"));
         console.log(uid)
@@ -379,5 +379,5 @@ function submitQuiz(){
             }else{
                 window.location.replace('../../survey/1');
             }
-    }
+        }; 
 }
