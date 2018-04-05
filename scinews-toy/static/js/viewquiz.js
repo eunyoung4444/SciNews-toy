@@ -33,10 +33,12 @@
         }}
     }
     var maxcount=maxcountnumber();
-    var refcount=refcounter();
-    console.log(refcount);
+    var refc=refcounter();
+    var refcount=refc[0];
+    var qnumholders=refc[1];
+    console.log(qnumholders)
     var numbins=5;
-    var colorpal=['','','#ecf6fe','#dbeffe','#c8e7fd'];
+    var colorpal=['','','#f0f8fe','#dff1fe','#cfe9fd'];
     //'#dbeffe','#b4defc','#87cefa'
     //'#e4f2fe','#c8e7fd','#a9dafb','#87cefa'
     //'#ffffff','#e3f3fa','#c7e6f5','#a9daf0','#87ceeb'
@@ -50,19 +52,18 @@
         thissent=sents[i];
         thissent.setAttribute("id","sent"+i.toString());
         corlor=getcolor(colorpal,threshs,refcount[i]);
-        console.log(i,refcount[i], color);
+        if(color!=''){
+            thissent.classList.add('selectable');
+        }
         thissent.style.backgroundColor=color;
-
-        thissent.setAttribute('dataref',0);
         $("#sent"+i.toString()).on({
             mouseenter: function(){
-            if(thissent.classList.contains('selectable')){
-//                this.setAttribute('style', 'backgroundColor:#FCF3CF !important');
-                this.style.backgroundColor="#FCF3CF";
+            if(this.classList.contains('selectable')){
+                this.style.border="1px dashed rgb(151, 167, 189)";
             }},
             mouseleave: function(){
-                if(thissent.classList.contains('selectable')){
-                    this.style.backgroundColor="transparent";
+                if(this.classList.contains('selectable')){
+                    this.style.border="";
                  }
             }
         });
@@ -175,7 +176,8 @@
 }); 
 
 function maxcountnumber(){
-    ref=refcounter();
+    refs=refcounter();
+    ref=refs[0];
     maxcount=Math.max.apply(Math, ref);
     return maxcount
 }
@@ -186,29 +188,36 @@ function refcounter(){
     var sentences=document.getElementsByTagName("sent");
     sentnum=sentences.length;
     ref=Array.apply(null, Array(sentnum)).map(Number.prototype.valueOf,0);
+    qnumholders=[]
+    for(i=0;i<sentnum;i++){
+        qnumholders.push([]);
+    }
     refs=[]
     for (i=0;i<quizs.length;i++){
         reftexts=quizs[i].getAttribute("dataref").split(",");
-        refs=refs.concat(reftexts);
+        for(k=0;k<reftexts.length;k++){
+            qrefpair=[i, reftexts[k]];
+            refs.push(qrefpair);}
     }
     for (j=0;j<refs.length;j++){
-        aref=refs[j];
+        aqrefpair=refs[j];
+        qnum=aqrefpair[0];
+        aref=aqrefpair[1];
         sentno=Number(aref.substring(4));
         ref[sentno]=ref[sentno]+1;
+        qnumholders[sentno]=qnumholders[sentno].concat(qnum);
     }
-    return ref
+    return [ref, qnumholders]
 }
 
 function thresholds(refcountinput, numbins){
     refcount=refcountinput.concat();
     refcount.sort();
-    console.log(refcount)
     var len=refcount.length;
     thresholds=Array.apply(null, Array(numbins-1)).map(Number.prototype.valueOf,0);
     for(i=0;i<thresholds.length;i++){
         thresholds[i]=refcount[Math.floor(len*(i+1)/numbins)-1];
     }
-    console.log(thresholds)
     return thresholds
 }
 
@@ -236,31 +245,6 @@ function popoverclose(){
     document.getElementById("addbuttons").classList.remove('fixedbutton');    
 
 }
-
-// End of document ready clause 
-// Move addbuttons along with mouse
-$(document).on('mousemove', function(e){
-    e.preventDefault();
-   mousey=e.pageY
-     texttop=document.getElementById('text').offsetTop;
-    textheight=document.getElementById('text').offsetHeight;
-    addbuttons=document.getElementById("addbuttons");
-    if(addbuttons.classList.contains('fixedbutton')){}
-    else{
-    buttontop=0;
-    topmargin=document.getElementById("top-margin").offsetHeight;
-    realtexttop=topmargin+texttop;
-    if(mousey<realtexttop){
-        buttontop=0;
-    }else{
-        if(mousey>realtexttop+textheight){
-            buttontop=textheight;
-        }else{
-            buttontop=Math.floor((mousey-realtexttop)/100)*100
-            }
-        }
-    addbuttons.style.top=buttontop.toString()+"px";
-}})
 
 function reconSidebar(){
  //Floating sidebar

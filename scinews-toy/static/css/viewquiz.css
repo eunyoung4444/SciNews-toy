@@ -437,10 +437,6 @@
   -webkit-margin-end:0px;
 }
 
-.selectable{
-  border: 1px #D5D8DC dashed;
-}
-
 .prevselected{
   background-color: #F9E79F !important;
 }
