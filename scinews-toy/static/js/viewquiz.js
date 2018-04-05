@@ -36,10 +36,11 @@
     var refcount=refcounter();
     console.log(refcount);
     var numbins=5;
-    var colorpal=['','','#e3f3fa','#c7e6f5','#a9daf0'];
+    var colorpal=['','','#ecf6fe','#dbeffe','#c8e7fd'];
     //'#dbeffe','#b4defc','#87cefa'
     //'#e4f2fe','#c8e7fd','#a9dafb','#87cefa'
     //'#ffffff','#e3f3fa','#c7e6f5','#a9daf0','#87ceeb'
+    //'#ffffff','#ecf6fe','#dbeffe','#c8e7fd','#b4defc','#9ed6fb','#87cefa'
     //https://gka.github.io/palettes/#colors=white,lightskyblue|steps=4|bez=1|coL=1
     var threshs=thresholds(refcount, numbins);
 
