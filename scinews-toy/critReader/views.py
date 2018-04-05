@@ -79,6 +79,20 @@ def survey(request, survey_no):
     } 
     return render(request, 'critreader/surveyembed.html', context)
 
+def viewquiz(request, article_no):
+    try:
+        article=Article.objects.get(article_no=article_no)
+    except Article.DoesNotExist:
+        raise Http404("Research does not exist")
+    thisArticle=Article.objects.get(article_no=article_no)
+    quizs=Question.objects.filter(question_article=thisArticle,question_madeat="quizcol")
+    reftexts=[RefText.objects.filter(reftext_question=aquiz) for aquiz in quizs]
+    context={
+    'article':thisArticle,
+    'quizs':quizs,
+    'reftexts':reftexts,
+    } 
+    return render(request, 'critreader/viewquiz.html', context)
 
 @csrf_exempt
 def addquestionwithref(request, article_no):
