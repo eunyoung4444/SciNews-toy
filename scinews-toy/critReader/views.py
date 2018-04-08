@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login
 from .forms import UserForm, LoginForm
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
+import operator
 # Create your views here.
 
 def index(request):
@@ -25,10 +26,29 @@ def article(request,article_no):
     except Article.DoesNotExist:
         raise Http404("Research does not exist")
     thisArticle=Article.objects.get(article_no=article_no)
-    questions=Question.objects.filter(question_article=thisArticle)
+    thisResearch=thisArticle.article_research
+    relatedArticles=Article.objects.filter(article_research=thisResearch)
+    allqs=Question.objects.none()
+    for anArticle in relatedArticles:
+        q=Question.objects.filter(question_article=anArticle)
+        allqs=allqs|q
+    orderedq=reversed(sorted(allqs, key=operator.attrgetter('question_popularity')))
+    orderedlist=list(orderedq)
+    questions=Question.objects.none()
+    for anArticle in relatedArticles:
+        quests=Question.objects.filter(question_article=anArticle,question_madeat="qcol")
+        questions=questions | quests
+    quizs=Question.objects.none()
+    for anArticle in relatedArticles:
+        qs=Question.objects.filter(question_article=anArticle,question_madeat="quizcol")
+        quizs=quizs | qs
+    reftexts=[RefText.objects.filter(reftext_question=aquiz) for aquiz in quizs]
     context={
     'article':thisArticle,
+    'quizs':quizs,
+    'reftexts':reftexts,
     'questions':questions,
+    'orderedlist':orderedlist,
     } 
     return render(request, 'critreader/article.html', context)
 
@@ -93,6 +113,19 @@ def viewquiz(request, article_no):
     'reftexts':reftexts,
     } 
     return render(request, 'critreader/viewquiz.html', context)
+
+def viewquestion(request, article_no):
+    try:
+        article=Article.objects.get(article_no=article_no)
+    except Article.DoesNotExist:
+        raise Http404("Research does not exist")
+    thisArticle=Article.objects.get(article_no=article_no)
+    questions=Question.objects.filter(question_article=thisArticle,question_madeat="qcol")
+    context={
+    'article':thisArticle,
+    'questions':questions,
+    } 
+    return render(request, 'critreader/viewquestion.html', context)
 
 @csrf_exempt
 def addquestionwithref(request, article_no):

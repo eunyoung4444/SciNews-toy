@@ -54,10 +54,9 @@
 <!-- Popup  -->
 <div id="boxes">
             <div style="display: none;" id="dialog" class="window">
-              <div style="text-align:left;">
-                <h4> What do you want to know from this article? </h4>
+            <div style="margin:auto;width:75%;">
+              <h4 id="popuptitle" style="text-align:left;">"{{article.article_title}}"</h4> 
             </div>
-              <h3 id="popuptitle" align="center">"{{article.article_title}}"</h3> 
               <hr>
             <div class="row" id="Qgen">
                 <div class="col-xs-6" class="col-container" id="getQs">
@@ -67,7 +66,7 @@
                                         <p style="font-size:10px">Doubleclick to add to your list</p>
                                         <div>
                                         <ul class="list-group" id="existingQs">
-                                                        {% for question in questions %}
+                                                        {% for question in orderedlist %}
                                                         <li class="list-group-item justify-content-between existQs"><span class="questions">{{question.question_text}}</span>
                                                                 <span class="questionby"> by {{question.question_madeby}}</span>
                                                                 <span class="badge"> {{question.question_popularity}}</span>

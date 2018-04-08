@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^(?P<article_no>[0-9]+)/$', views.article, name='article'),
     url(r'^survey/(?P<survey_no>[0-9]+)/$', views.survey, name='survey'),
     url(r'^viewquiz/(?P<article_no>[0-9]+)/$', views.viewquiz, name='viwequiz'),
+    url(r'^viewquestion/(?P<article_no>[0-9]+)/$', views.viewquestion, name='viwequestion'),
     url(r'^colqcol/(?P<article_no>[0-9]+)/$', views.col_question_collector, name='colqcol'),
     url(r'^qcol/(?P<article_no>[0-9]+)/$', views.question_collector, name='question_collector'),
     url(r'^quiz/(?P<article_no>[0-9]+)/$', views.quiz_collector, name='quiz_collector'),
